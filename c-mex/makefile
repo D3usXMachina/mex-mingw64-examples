@@ -17,7 +17,7 @@ CPPFLAGS:= -Wall -Wextra
 LDFLAGS :=
 
 FOBJ 	:=
-COBJ 	:= timestwo.o test_timestwo.o
+COBJ 	:= timestwo_.o test_timestwo.o
 CPPOBJ	:=
 
 TARGET 	:= test.exe
@@ -39,4 +39,4 @@ $(filter %.o,$(CPPOBJ)): %.o: %.cpp
 all: $(TARGET)
 
 clean:
-	rm -fv $(wildcard *.exe) $(wildcard *.o) $(wildcard *.mod) $(wildcard *.smod)
+	rm -fv $(wildcard *.mex*) $(wildcard *.exe) $(wildcard *.o) $(wildcard *.mod) $(wildcard *.smod)

@@ -16,7 +16,7 @@ CPPFLAGS:= -Wall -Wextra
 
 LDFLAGS :=
 
-FOBJ 	:= timestwo.o test_timestwo.o
+FOBJ 	:= timestwo_.o test_timestwo.o
 COBJ 	:= 
 CPPOBJ	:=
 
