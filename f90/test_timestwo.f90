@@ -1,3 +1,5 @@
+! Copyright (C) 2022 Joel Fischer
+
 program testtimestwo
 
 implicit none

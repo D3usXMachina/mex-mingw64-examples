@@ -1,3 +1,5 @@
+# Copyright (C) 2022 Joel Fischer
+
 ifeq ($(OS),Windows_NT)
 	SHELL := bash.exe
 else

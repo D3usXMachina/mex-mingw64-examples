@@ -1,3 +1,5 @@
+// Copyright (C) 2022 Joel Fischer
+
 #include <stdio.h>
 
 extern void timestwo(double input, double* output);

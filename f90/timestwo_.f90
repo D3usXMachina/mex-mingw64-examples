@@ -1,3 +1,5 @@
+! Copyright (C) 2022 Joel Fischer
+
 subroutine timestwo(input,output)
 
     implicit none
