@@ -7,6 +7,8 @@ else
 endif
 .SHELLFLAGS := -eo pipefail -c
 
+LD 		:= gcc
+
 FC 		:= gfortran
 FFLAGS 	:= -Wall -Wextra
 
@@ -25,7 +27,7 @@ CPPOBJ	:=
 TARGET 	:= test.exe
 
 $(TARGET): $(FOBJ) $(COBJ) $(CPPOBJ)
-	$(CC) $(LDFLAGS) $(FOBJ) $(COBJ) $(CPPOBJ) -o $(TARGET)
+	$(LD) $(LDFLAGS) $(FOBJ) $(COBJ) $(CPPOBJ) -o $(TARGET)
 
 $(filter %.o,$(FOBJ)): %.o: %.f90
 	$(FC) $(FFLAGS) $^ -c -o $@
