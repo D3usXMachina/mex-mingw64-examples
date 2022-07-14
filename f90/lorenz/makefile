@@ -20,7 +20,7 @@ CPPFLAGS:= -Wall -Wextra
 
 LDFLAGS :=
 
-mFOBJ 	:= lorenz.o
+mFOBJ 	:= lorenz_module.o
 FOBJ	:= dlsode.o
 COBJ 	:=
 CPPOBJ	:=

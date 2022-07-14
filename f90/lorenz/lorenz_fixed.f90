@@ -1,5 +1,39 @@
 ! Copyright (c) 2022 Joel Fischer
 
+subroutine f(neq, t, y, ydot)
+        !> =DESCRIPTION=============================================================
+        !> Calculate the integrand of a Lorenz system
+        !> -NOTES-------------------------------------------------------------------
+        !> -CHANGELOG---------------------------------------------------------------
+        !> J.Fischer 09.07.22:
+        !> -  started & finished implementation
+        !> =========================================================================
+        implicit none
+        ! ==VARIABLE=DECLARATION====================================================
+        ! input arguments ----------------------------------------------------------
+        integer, intent(in) :: neq ! the number of equations
+        real(kind(1.0d0)), intent(in) :: t ! independent variable
+        real(kind(1.0d0)), dimension(3), intent(in) :: y ! dependent variable
+        ! output arguments ---------------------------------------------------------
+        real(kind(1.0d0)), dimension(3), intent(out) :: ydot ! integrand
+        ! return value -------------------------------------------------------------
+        ! (none)
+        ! other variables ----------------------------------------------------------
+        real(kind(1.0d0)) :: sigma, rho, beta
+        ! ==========================================================================
+
+        sigma = 10.0d0
+        rho = 28.0e0
+        beta = 8.0d0/3.0d0
+
+        ydot = (/ &
+                sigma*(y(2) - y(1)), &
+                y(1)*(rho - y(3)) - y(2), &
+                y(1)*y(2) - beta*y(3) &
+                /)
+        
+end subroutine f
+
 program lorenz
         !> =DESCRIPTION=============================================================
         !> Solve a Lorenz system ODE
@@ -48,36 +82,3 @@ program lorenz
         write(*,*) iwork(11), iwork(12), iwork(13)
 end program lorenz
 
-subroutine f(neq, t, y, ydot)
-        !> =DESCRIPTION=============================================================
-        !> Calculate the integrand of a Lorenz system
-        !> -NOTES-------------------------------------------------------------------
-        !> -CHANGELOG---------------------------------------------------------------
-        !> J.Fischer 09.07.22:
-        !> -  started & finished implementation
-        !> =========================================================================
-        implicit none
-        ! ==VARIABLE=DECLARATION====================================================
-        ! input arguments ----------------------------------------------------------
-        integer, intent(in) :: neq ! the number of equations
-        real(kind(1.0d0)), intent(in) :: t ! independent variable
-        real(kind(1.0d0)), dimension(3), intent(in) :: y ! dependent variable
-        ! output arguments ---------------------------------------------------------
-        real(kind(1.0d0)), dimension(3), intent(out) :: ydot ! integrand
-        ! return value -------------------------------------------------------------
-        ! (none)
-        ! other variables ----------------------------------------------------------
-        real(kind(1.0d0)) :: sigma, rho, beta
-        ! ==========================================================================
-
-        sigma = 10.0d0
-        rho = 28.0e0
-        beta = 8.0d0/3.0d0
-
-        ydot = (/ &
-                sigma*(y(2) - y(1)), &
-                y(1)*(rho - y(3)) - y(2), &
-                y(1)*y(2) - beta*y(3) &
-                /)
-        
-end subroutine f
