@@ -43,4 +43,4 @@ $(filter %.o,$(CPPOBJ)): %.o: %.cpp
 all: $(TARGET)
 
 clean:
-	rm -fv $(wildcard *.exe) $(wildcard *.o) $(wildcard *.mod) $(wildcard *.smod)
+	rm -fv $(wildcard *.exe) $(wildcard *.o) $(wildcard *.mod) $(wildcard *.smod) $(wildcard *.mex*)
