@@ -1,32 +1,11 @@
 ! Copyright (c) 2022 Joel Fischer
 
-module m_lorenz
-  !> =DESCRIPTION===============================================================
-  !> -NOTES---------------------------------------------------------------------
-  !> -CHANGELOG-----------------------------------------------------------------
-  !> ===========================================================================
-  implicit none
-  private
-  ! ==VARIABLES=================================================================
-  public :: sigma, rho, beta, &
-            dp
-  ! ==SUBROUTINES=&=FUNCTIONS===================================================
-  ! ============================================================================
-  integer, parameter :: dp = kind(1.0d0)
-
-  real(dp) :: sigma = 10.0d0
-  real(dp) :: rho = 28.0d0
-  real(dp) :: beta = 8.0d0/3.0d0
-
-contains
-end module m_lorenz
-
 subroutine f(neq, t, y, ydot)
   !> =DESCRIPTION=============================================================
   !> Calculate the integrand of a Lorenz system
   !> -NOTES-------------------------------------------------------------------
   !> =========================================================================
-  use m_lorenz, only : dp, sigma, rho, beta
+  use lorenz, only : dp, sigma, rho, beta
   implicit none
   ! ==VARIABLE=DECLARATION====================================================
   ! input arguments ----------------------------------------------------------
@@ -50,7 +29,7 @@ program lorenz
   !> Solve a Lorenz system ODE
   !> -NOTES-------------------------------------------------------------------
   !> =========================================================================
-  use m_lorenz, only : dp
+  use lorenz, only : dp
   implicit none
   ! ==VARIABLE=DECLARATION====================================================
   ! lsode variables ----------------------------------------------------------
@@ -66,8 +45,8 @@ program lorenz
   y = (/ 1.0d0, 0.0d0, 0.0d0 /) ! initial value of dependent variable
   t = 0.0d0 ! initial value of independent variable
   itol = 1 ! 1 -> use one absolute tolerance, 2 -> use individual absolute tolerances
-  rtol = 1e-4 ! relative tolerance
-  atol = 1e-6 ! absolute tolerance
+  rtol = 1d-4 ! relative tolerance
+  atol = 1d-6 ! absolute tolerance
   itask = 1 ! task : compute value at predefined value of independent variable
   istate = 1 ! 1 for first call
   iopt = 0 ! no optional arguments
