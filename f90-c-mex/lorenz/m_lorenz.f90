@@ -1,6 +1,6 @@
 ! Copyright (c) 2022 Joel Fischer
 
-module lorenz
+module m_lorenz
   !> =DESCRIPTION===============================================================
   !> -NOTES---------------------------------------------------------------------
   !> -CHANGELOG-----------------------------------------------------------------
@@ -44,5 +44,5 @@ contains
     
   end subroutine m_f
 
-end module lorenz
+end module m_lorenz
 

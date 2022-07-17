@@ -30,7 +30,7 @@ int main(){
 	f_lorenz(&sigma, &rho, &beta, y0, &t0, &dt, &n, output);
 
 
-	for (size_t i_tout = 0 ; i_tout<n ; i_tout++) {
+	for (int32_t i_tout = 0 ; i_tout<n ; i_tout++) {
 		printf("%e\t%e\t%e\t%e\n",
 			output[4*i_tout+0],
 			output[4*i_tout+1],

@@ -5,7 +5,7 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n, output) bind(C, name='f_lor
   !> Solve a Lorenz system ODE
   !> -NOTES-------------------------------------------------------------------
   !> =========================================================================
-  use lorenz, only : m_f, dp, i32, m_sigma, m_rho, m_beta
+  use m_lorenz, only : m_f, dp, i32, m_sigma, m_rho, m_beta
   implicit none
   external dlsode
   ! ==VARIABLE=DECLARATION====================================================
@@ -17,7 +17,7 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n, output) bind(C, name='f_lor
   real(dp) :: output(4,n)
   ! lsode variables ----------------------------------------------------------
   integer :: jac
-  integer :: iopt, iout, istate, itask, itol, iwork(20+3), liw, lrw, mf, neq
+  integer :: iopt, istate, itask, itol, iwork(20+3), liw, lrw, mf, neq
   real(dp) :: atol, rtol, rwork(22+9*3+3**2), t, tout, y(3)
   ! other variables ----------------------------------------------------------
   integer(i32) :: itout
