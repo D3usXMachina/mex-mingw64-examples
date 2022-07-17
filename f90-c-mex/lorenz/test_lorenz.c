@@ -4,10 +4,13 @@
  *
  * Copyright (c) Joel Fischer 2022
  */
-#include <stdio.h>
 
-extern void f_lorenz(double sigma, double rho, double beta,
-		double* y0, double t0, double dt, int n,
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+extern void f_lorenz(double* sigma, double* rho, double* beta,
+		double* y0, double* t0, double* dt, int32_t* n,
 		double* output);
 
 int main(){
@@ -20,11 +23,11 @@ int main(){
 	double t0 = 0.;
 	double dt = 1e-3;
 
-	int n = 1000000;
+	int32_t n = 1000000;
 
 	double* output = malloc(4*n*sizeof(double));
 
-	f_lorenz(sigma, rho, beta, y0, t0, dt, n, output);
+	f_lorenz(&sigma, &rho, &beta, y0, &t0, &dt, &n, output);
 
 
 	for (size_t i_tout = 0 ; i_tout<n ; i_tout++) {

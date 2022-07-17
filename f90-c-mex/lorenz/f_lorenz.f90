@@ -5,14 +5,14 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n, output) bind(C, name='f_lor
   !> Solve a Lorenz system ODE
   !> -NOTES-------------------------------------------------------------------
   !> =========================================================================
-  use lorenz, only : m_f, dp, ci 
+  use lorenz, only : m_f, dp, i32, m_sigma, m_rho, m_beta
   implicit none
   external dlsode
   ! ==VARIABLE=DECLARATION====================================================
   ! input variables ----------------------------------------------------------
-  real(dp), value, intent(in) :: sigma, rho, beta, t0, dt
+  real(dp), intent(in) :: sigma, rho, beta, t0, dt
   real(dp), intent(in) :: y0(3)
-  integer(ci), value, intent(in) :: n
+  integer(i32), intent(in) :: n
   ! output variables ---------------------------------------------------------
   real(dp) :: output(4,n)
   ! lsode variables ----------------------------------------------------------
@@ -20,7 +20,7 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n, output) bind(C, name='f_lor
   integer :: iopt, iout, istate, itask, itol, iwork(20+3), liw, lrw, mf, neq
   real(dp) :: atol, rtol, rwork(22+9*3+3**2), t, tout, y(3)
   ! other variables ----------------------------------------------------------
-  integer(ci) :: itout
+  integer(i32) :: itout
   ! ==========================================================================
 
   neq = 3 ! number of equations of ode
@@ -37,6 +37,10 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n, output) bind(C, name='f_lor
   mf = 22 ! which method to use : 22 -> stiff method, auto-generated jacobian
   
   tout = 0.1d0 ! first output time
+
+  m_sigma = sigma
+  m_rho = rho
+  m_beta = beta
 
   do itout = 1, n
     call dlsode(m_f, neq, y, t, tout, &
