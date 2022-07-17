@@ -41,7 +41,7 @@ subroutine f_lorenz(sigma, rho, beta, y0, t0, dt, n) bind(C, name='f_lorenz')
     call dlsode(m_f, neq, y, t, tout, &
                 itol, rtol, atol, itask, istate, iopt, &
                 rwork, lrw, iwork, liw, jac, mf)
-    write(*,*) t, y(1), y(2), y(3)
+    write(*,"(4(E12.6,2X))") t, y(1), y(2), y(3)
     if (istate < 0) then
       write(*,*) 'Error halt.. istate = ', istate
       STOP "LSODE ran into a problem."
