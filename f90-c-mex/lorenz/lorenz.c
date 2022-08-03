@@ -34,9 +34,9 @@ void mexFunction(int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[]) {
 			mexErrMsgIdAndTxt("MATLAB:lorenz:inputNotInt32Scalar", str);
 		    }
 	    }else if ( i == 3 ){ // y0
-		    if ( !mxIsDouble(prhs[i]) || mxIsComplex(prhs[i]) || !(mrows == 3 && ncols == 1) ) {
+		    if ( !mxIsDouble(prhs[i]) || mxIsComplex(prhs[i]) || (mrows*ncols != 3) ) {
 			char str[60];
-			sprintf(str,"Argument %i must be a noncomplex double array of size (3,1).", i+1);
+			sprintf(str,"Argument %i must be a noncomplex double array of length.", i+1);
 			mexErrMsgIdAndTxt("MATLAB:lorenz:wrongInputFormat", str);
 		    }
 	    }else{
